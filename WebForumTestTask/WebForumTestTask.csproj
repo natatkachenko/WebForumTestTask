@@ -134,6 +134,7 @@
     <Compile Include="Models\ForumContext.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Theme.cs" />
+    <Compile Include="Models\ThemeDbInitializer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
