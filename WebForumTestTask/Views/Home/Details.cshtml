@@ -18,6 +18,9 @@
         <h4>@Model.Title</h4>
         <p>@Html.DisplayFor(model=>model.Text)</p>
     </div>
+    <div class="container">
+        <a href="/Post/Index/@Model.Id">Comments</a>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>

@@ -1,0 +1,34 @@
+﻿@model WebForumTestTask.Models.Post
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Creation of a new comment</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="container">
+            <h2>Creation of a new comment</h2>
+            <div class="form-group">
+                @Html.LabelFor(i => i.ThemeId, "Select title of topic")
+                @Html.DropDownListFor(i => i.ThemeId, ViewBag.Themes as SelectList)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(u => u.UserId, "Select user")
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" />
+            </div>
+        </div>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

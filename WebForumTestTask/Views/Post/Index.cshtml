@@ -1,0 +1,30 @@
+﻿@model WebForumTestTask.Models.Post
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comments</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="media border">
+        <div class="media-body">
+            <h4>
+                @Model.UserId
+                @if (Model.UpdateDate == null)
+                {<i>Posted on @Model.PostDate</i>}
+                else
+                {<i>Updated on @Model.UpdateDate</i>}
+            </h4>
+            <p>@Model.MessageText</p>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
