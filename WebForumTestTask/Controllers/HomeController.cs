@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebForumTestTask.Models;
+using System.Threading.Tasks;
 
 namespace WebForumTestTask.Controllers
 {
@@ -34,6 +35,21 @@ namespace WebForumTestTask.Controllers
                     return View(theme);
             }
             return HttpNotFound();
+        }
+
+        // Add new topic
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        // Save new topic in DB
+        [HttpPost]
+        public async Task<ActionResult> Add(Theme theme)
+        {
+            db.Themes.Add(theme);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

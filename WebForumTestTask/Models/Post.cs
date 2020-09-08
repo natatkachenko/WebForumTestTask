@@ -20,7 +20,7 @@ namespace WebForumTestTask.Models
         public DateTime PostDate { get; set; }
 
         // CreatedByUser
-        public string UserLogin { get; set; }
+        public int UserId { get; set; }
 
         // UpdateDate
         public DateTime UpdateDate { get; set; }
