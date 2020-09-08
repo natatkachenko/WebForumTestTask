@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace Test_Task.Models
+namespace WebForumTestTask.Models
 {
     public class ForumContext : DbContext
     {
