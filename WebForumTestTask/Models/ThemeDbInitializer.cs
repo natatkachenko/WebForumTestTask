@@ -11,7 +11,7 @@ namespace WebForumTestTask.Models
     {
         protected override void Seed(ForumContext db)
         {
-            db.Themes.Add(new Theme { Id = 1, Title = "Test" });
+            db.Themes.Add(new Theme { Id = 1, Title = "Test", Text="Some Text" });
 
             base.Seed(db);
         }
