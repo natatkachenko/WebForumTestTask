@@ -8,10 +8,8 @@
     <title>Forum GeeksForLess</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="container">
@@ -27,11 +25,13 @@
                 @foreach (var t in ViewBag.Themes)
                 {
                     <tr>
-                        <td><a href="/Post/Index/@t.Id">@t.Title</a></td>
+                        <td><a href="/Home/Details/@t.Id">@t.Title</a></td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
