@@ -12,8 +12,5 @@ namespace WebForumTestTask.Models
 
         // Title
         public string Title { get; set; }
-
-        // ThemeText
-        public string Text { get; set; }
     }
 }

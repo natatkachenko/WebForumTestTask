@@ -17,11 +17,8 @@
         <div class="container">
             <h2>Creation of a new comment</h2>
             <div class="form-group">
-                @Html.LabelFor(i => i.ThemeId, "Select title of topic")
-                @Html.DropDownListFor(i => i.ThemeId, ViewBag.Themes as SelectList)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(u => u.UserId, "Select user")
+                @Html.LabelFor(i => i.ThemeId, "Add post")
+                @Html.TextAreaFor(i => i.MessageText, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <input type="submit" value="Add" />

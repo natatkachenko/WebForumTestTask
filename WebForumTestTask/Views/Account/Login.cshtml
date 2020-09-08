@@ -1,0 +1,42 @@
+﻿@model WebForumTestTask.Models.LoginModel
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="container">
+        <h4>Login</h4>
+        @Html.ValidationSummary()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <p>
+            <label>Email</label><br />
+            @Html.EditorFor(u => u.Email)
+        </p>
+        <p>
+            <label>Password</label><br />
+            @Html.EditorFor(u => u.Password)
+        </p>
+        <p><button type="submit">Login</button></p>
+    </div>
+    <div class="container">
+        <a href="/Account/Register">Registration</a>
+    </div>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

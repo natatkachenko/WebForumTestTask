@@ -1,0 +1,63 @@
+﻿@model WebForumTestTask.Models.RegisterModel
+@{
+    Layout = null;
+    ViewBag.Title = "Register";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="container">
+        <h4>Registration</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+
+        <div>
+            Login
+            <div>
+                @Html.EditorFor(model => model.Login)
+            </div>
+        </div>
+
+        <div>
+            Email
+            <div>
+                @Html.EditorFor(model => model.Email)
+            </div>
+        </div>
+
+        <div>
+            Password
+            <div>
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+        <div>
+            Confirm password
+            <div>
+                @Html.EditorFor(model => model.PasswordConfirm)
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Register" />
+            </div>
+        </div>
+    </div>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

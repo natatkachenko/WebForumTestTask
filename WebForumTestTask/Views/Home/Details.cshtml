@@ -1,13 +1,13 @@
-﻿@model WebForumTestTask.Models.Theme
+﻿@model WebForumTestTask.ViewModels.ThemeViewModel
 @{
     Layout = null;
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Theme.Title;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@Model.Title</title>
+    <title>@Model.Theme.Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     @Styles.Render("~/Content/css")
@@ -15,12 +15,23 @@
 </head>
 <body>
     <div class="container">
-        <h4>@Model.Title</h4>
-        <p>@Html.DisplayFor(model=>model.Text)</p>
+        <h4>@Model.Theme.Title</h4>
     </div>
     <div class="container">
-        <a href="/Post/Index/@Model.Id">Comments</a>
+        @foreach (var post in Model.Posts)
+        {
+            <p>
+                <div class="row">
+                    <div class="col-sm-4"><b>@post.User.UserName</b></div>
+                    <div class="col-sm-8"><i>@post.Post.PostDate</i></div>
+                </div>
+                <div class="col-sm-12">
+                    <div>@post.Post.MessageText</div>
+                </div>
+            </p>
+        }
     </div>
+    @Html.ActionLink("Add post", "Add", "Post", new WebForumTestTask.Models.Post { ThemeId = Model.Theme.Id }, null)
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>

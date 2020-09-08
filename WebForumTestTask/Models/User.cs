@@ -2,21 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebForumTestTask.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        // UserId
-        public int Id { get; set; }
-
+        public User() { }
         // LoginName
         public string Login { get; set; }
-
-        // Email
-        public string Email { get; set; }
-
-        // Password
-        public string Password { get; set; }
     }
 }
