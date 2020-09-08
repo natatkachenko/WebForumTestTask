@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebForumTestTask.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace WebForumTestTask.Controllers
 {
@@ -46,10 +47,12 @@ namespace WebForumTestTask.Controllers
         [HttpPost]
         public async Task<ActionResult> Add(Post post)
         {
-            //post.UserId = User.Identity.GetUserId();
+            post.UserId = User.Identity.GetUserId<string>();
+            post.PostDate = DateTime.Now;
+            post.UpdateDate = DateTime.Now;
             db.Posts.Add(post);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction($"Details/{post.ThemeId}", "Home");
         }
     }
 }
