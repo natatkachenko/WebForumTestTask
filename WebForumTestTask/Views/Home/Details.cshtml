@@ -23,7 +23,8 @@
             <p>
                 <div class="row">
                     <div class="col-sm-4"><b>@post.User.UserName</b></div>
-                    <div class="col-sm-8"><i>@post.Post.PostDate</i></div>
+                    <div class="col-sm-7"><i>@post.Post.PostDate</i></div>
+                    <div class="col-sm-1"><b>@Html.ActionLink("Edit post", "Edit", "Post", new { post.Post.Id }, null)</b></div>
                 </div>
                 <div class="col-sm-12">
                     <div>@post.Post.MessageText</div>

@@ -1,0 +1,38 @@
+﻿@model WebForumTestTask.Models.Post
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edition of a comment</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <div class="container">
+        <h2>Edition of a comment</h2>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ThemeId, "Edit post")
+            @Html.HiddenFor(m => m.ThemeId)
+            @Html.EditorFor(m => m.MessageText, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.PostDate)
+            @Html.HiddenFor(m => m.UpdateDate)
+            @Html.HiddenFor(m => m.UserId)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

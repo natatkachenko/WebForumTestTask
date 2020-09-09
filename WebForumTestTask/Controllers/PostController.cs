@@ -36,10 +36,6 @@ namespace WebForumTestTask.Controllers
         // Add new post
         public ActionResult Add()
         {
-            SelectList themes = new SelectList(db.Themes, "Id", "Title");
-            SelectList users = new SelectList(db.Users, "Id", "Login");
-            ViewBag.Themes = themes;
-            ViewBag.Users = users;
             return View();
         }
 
@@ -51,6 +47,27 @@ namespace WebForumTestTask.Controllers
             post.PostDate = DateTime.Now;
             post.UpdateDate = DateTime.Now;
             db.Posts.Add(post);
+            await db.SaveChangesAsync();
+            return RedirectToAction($"Details/{post.ThemeId}", "Home");
+        }
+
+        // Edit post
+        public ActionResult Edit(int? id)
+        {
+            if (id != null)
+            {
+                Post post = db.Posts.FirstOrDefault(p => p.Id == id);
+                return View(post);
+            }
+            return HttpNotFound();
+        }
+
+        // Save post changes in DB
+        [HttpPost]
+        public async Task<ActionResult> Edit(Post post)
+        {
+            post.UpdateDate = DateTime.Now;
+            db.Entry(post).State = System.Data.Entity.EntityState.Modified;
             await db.SaveChangesAsync();
             return RedirectToAction($"Details/{post.ThemeId}", "Home");
         }
