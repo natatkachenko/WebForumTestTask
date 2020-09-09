@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
-
+using System.Net.Mail;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace WebForumTestTask.Controllers
 {
@@ -19,7 +20,10 @@ namespace WebForumTestTask.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager>();
+                var userManager =  HttpContext.GetOwinContext().GetUserManager<UserManager>();
+                var provider = new DpapiDataProtectionProvider("WebForumTestTask");
+                userManager.UserTokenProvider = new DataProtectorTokenProvider<User>(provider.Create("EmailConfirmation"));
+                return userManager;
             }
         }
 
@@ -37,7 +41,16 @@ namespace WebForumTestTask.Controllers
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    // generate token for registration confirm
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // create link for confirmation
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+                               protocol: Request.Url.Scheme);
+                    // send of letter
+                    await UserManager.SendEmailAsync(user.Id, "Confirmation of email",
+                               "To complete the registration ckick on the link:: <a href=\""
+                                                               + callbackUrl + "\">complete the registration</a>");
+                    return View("DisplayEmail");
                 }
                 else
                 {
@@ -48,6 +61,27 @@ namespace WebForumTestTask.Controllers
                 }
             }
             return View(model);
+        }
+
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            if (result.Succeeded)
+            {
+                return View("ConfirmEmail");
+            }
+            else
+            {
+                foreach (string error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+            return View();
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -77,16 +111,23 @@ namespace WebForumTestTask.Controllers
                 }
                 else
                 {
-                    ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
-                                            DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
+                    if (user.EmailConfirmed == true)
                     {
-                        IsPersistent = true
-                    }, claim);
-                    if (String.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
-                    return Redirect(returnUrl);
+                        ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
+                                            DefaultAuthenticationTypes.ApplicationCookie);
+                        AuthenticationManager.SignOut();
+                        AuthenticationManager.SignIn(new AuthenticationProperties
+                        {
+                            IsPersistent = true
+                        }, claim);
+                        if (String.IsNullOrEmpty(returnUrl))
+                            return RedirectToAction("Index", "Home");
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Email isn't confirmed");
+                    }
                 }
             }
             ViewBag.returnUrl = returnUrl;
