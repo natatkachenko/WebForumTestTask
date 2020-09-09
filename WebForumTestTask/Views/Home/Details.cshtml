@@ -10,6 +10,11 @@
     <title>@Model.Theme.Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,6 +22,7 @@
     <div class="container">
         <h4>@Model.Theme.Title</h4>
     </div>
+    <hr />
     <div class="container">
         @foreach (var post in Model.Posts)
         {
@@ -29,11 +35,12 @@
                 </div>
                 <div class="col-sm-12">
                     <div>@post.Post.MessageText</div>
+                    <hr />
                 </div>
             </p>
         }
     </div>
-    @Html.ActionLink("Add post", "Add", "Post", new WebForumTestTask.Models.Post { ThemeId = Model.Theme.Id }, null)
+    <li><a href="@Url.Action("Add", "Post", new WebForumTestTask.Models.Post { ThemeId = Model.Theme.Id }, null)" class="btn btn-default btn-sm">Add post</a></li>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>
