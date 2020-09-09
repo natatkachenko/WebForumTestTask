@@ -15,21 +15,12 @@
     <div class="container">
         <h3>Forum GeeksForLess</h3>
         <a href="/Home/Add">Add topic</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var t in ViewBag.Themes)
-                {
-                    <tr>
-                        <td><a href="/Home/Details/@t.Id">@t.Title</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="list-group">
+            @foreach (var t in ViewBag.Themes)
+            {
+                <a href="/Home/Details/@t.Id" class="list-group-item list-group-item-action">@t.Title</a>
+            }
+        </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
