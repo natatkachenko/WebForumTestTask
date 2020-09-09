@@ -14,25 +14,6 @@ namespace WebForumTestTask.Controllers
         // create data context
         ForumContext db = new ForumContext();
 
-        // start page with comments of certain theme
-        public ActionResult Index(int? id)
-        {
-            if (id != null)
-            {
-                Post post = db.Posts.FirstOrDefault(p => p.ThemeId == id);
-                if (post != null)
-                    return View(post);
-                else
-                    return RedirectToAction("NoMessage");
-            }
-            return HttpNotFound();
-        }
-        // if there are no messages for certain topic
-        public ActionResult NoMessage()
-        {
-            return View();
-        }
-
         // Add new post
         public ActionResult Add()
         {
