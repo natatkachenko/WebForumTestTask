@@ -10,6 +10,6 @@ namespace WebForumTestTask.Models
     {
         public User() { }
         // LoginName
-        public string Login { get; set; }
+        //public string Login { get; set; }
     }
 }

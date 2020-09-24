@@ -23,8 +23,8 @@
         @Html.ValidationSummary()
         <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
         <p>
-            <label>Email</label><br />
-            @Html.EditorFor(u => u.Email)
+            <label>Login</label><br />
+            @Html.EditorFor(u => u.UserName)
         </p>
         <p>
             <label>Password</label><br />

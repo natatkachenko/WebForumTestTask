@@ -37,7 +37,7 @@ namespace WebForumTestTask.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { UserName = model.Email, Email = model.Email, Login = model.Login };
+                User user = new User { UserName = model.UserName, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -104,10 +104,10 @@ namespace WebForumTestTask.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await UserManager.FindAsync(model.Email, model.Password);
+                User user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Wrong email or password.");
+                    ModelState.AddModelError("", "Wrong login or password.");
                 }
                 else
                 {

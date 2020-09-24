@@ -169,6 +169,10 @@
     <Compile Include="Migrations\202009082038204_RemovePasswordOverride.designer.cs">
       <DependentUpon>202009082038204_RemovePasswordOverride.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009240841306_RemoveUserLogin.cs" />
+    <Compile Include="Migrations\202009240841306_RemoveUserLogin.designer.cs">
+      <DependentUpon>202009240841306_RemoveUserLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ForumContext.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -247,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009082038204_RemovePasswordOverride.resx">
       <DependentUpon>202009082038204_RemovePasswordOverride.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009240841306_RemoveUserLogin.resx">
+      <DependentUpon>202009240841306_RemoveUserLogin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

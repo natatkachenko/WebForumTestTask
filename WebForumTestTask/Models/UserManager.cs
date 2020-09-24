@@ -56,6 +56,11 @@ namespace WebForumTestTask.Models
             ForumContext db = context.Get<ForumContext>();
             UserManager manager = new UserManager(new UserStore<User>(db));
             manager.EmailService = new EmailService();
+            manager.UserValidator = new UserValidator<User>(manager)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = true
+            };
             return manager;
         }
     }
