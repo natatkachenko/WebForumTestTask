@@ -26,7 +26,7 @@ namespace WebForumTestTask.Controllers
 
         // text of certain theme
         [HttpGet]
-        public ActionResult Details(int? id)
+        public ActionResult Posts(int? id)
         {
             if (id != null)
             {

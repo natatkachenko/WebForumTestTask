@@ -40,7 +40,10 @@
             </p>
         }
     </div>
-    <li><a href="@Url.Action("Add", "Post", new WebForumTestTask.Models.Post { ThemeId = Model.Theme.Id }, null)" class="btn btn-default btn-sm">Add post</a></li>
+    <ul>
+        <li><a href="@Url.Action("Add", "Post", new WebForumTestTask.Models.Post { ThemeId = Model.Theme.Id }, null)" class="btn btn-default btn-sm">Add post</a></li>
+    </ul>
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>

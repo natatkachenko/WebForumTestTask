@@ -220,7 +220,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Posts.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Post\Add.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

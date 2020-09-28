@@ -29,7 +29,7 @@ namespace WebForumTestTask.Controllers
             post.UpdateDate = DateTime.Now;
             db.Posts.Add(post);
             await db.SaveChangesAsync();
-            return RedirectToAction($"Details/{post.ThemeId}", "Home");
+            return RedirectToAction($"Posts/{post.ThemeId}", "Home");
         }
 
         // Edit post
@@ -50,7 +50,7 @@ namespace WebForumTestTask.Controllers
             post.UpdateDate = DateTime.Now;
             db.Entry(post).State = System.Data.Entity.EntityState.Modified;
             await db.SaveChangesAsync();
-            return RedirectToAction($"Details/{post.ThemeId}", "Home");
+            return RedirectToAction($"Posts/{post.ThemeId}", "Home");
         }
     }
 }
