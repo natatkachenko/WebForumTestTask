@@ -31,7 +31,10 @@
                     <div class="col-sm-5"><b>@post.User.UserName</b></div>
                     <div class="col-sm-3"><i>Posted on @post.Post.PostDate</i></div>
                     <div class="col-sm-3"><i>Updated on @post.Post.UpdateDate</i></div>
-                    <div class="col-sm-1"><b>@Html.ActionLink("Edit post", "Edit", "Post", new { post.Post.Id }, null)</b></div>
+                    @if (post.User.UserName == User.Identity.Name)
+                    {
+                        <div class="col-sm-1"><b>@Html.ActionLink("Edit post", "Edit", "Post", new { post.Post.Id }, null)</b></div>
+                    }
                 </div>
                 <div class="col-sm-12">
                     <div>@post.Post.MessageText</div>
